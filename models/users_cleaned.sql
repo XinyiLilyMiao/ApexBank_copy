@@ -21,7 +21,7 @@ SUBSTR(user_id,
 (LENGTH(user_id) - STRPOS(user_id, '_'))
 ) AS user_id
 ,birth_year
-,2019-birth_year AS age
+,2019 - birth_year AS age
 ,c.country AS country
 ,city
 ,created_date as member_at
