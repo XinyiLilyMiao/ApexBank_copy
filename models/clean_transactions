@@ -1,0 +1,14 @@
+SELECT 
+t.transaction_id
+,t.transactions_type
+,t.transactions_currency
+,t.amount_usd
+,t.transactions_state
+,t.ea_cardholderpresence AS cardholder_presence
+,t.ea_merchant_mcc AS merchant_mcc
+,t.ea_merchant_city AS merchant_city
+,t.ea_merchant_country AS merchant_country
+,t.direction
+,t.user_id
+,t.created_date
+FROM `ApexBank.transactions` AS t
