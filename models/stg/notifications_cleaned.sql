@@ -1,10 +1,10 @@
 SELECT
-  reason,
-  channel,
-  status,
-  user_id,
-  created_date,
-  Extract(DATE FROM created_date) AS notification_date,
+  reason
+  ,channel
+  ,status
+  ,CAST(SUBSTR(user_id, (STRPOS(user_id, '_') + 1), (LENGTH(user_id) - STRPOS(user_id, '_'))) AS INT64) AS user_id
+  ,created_date
+  ,Extract(DATE FROM created_date) AS notification_date
   CASE
     WHEN reason IN ('BLACK_FRIDAY','FIFTH_PAYMENT_PROMO') THEN 'Promotions'
     WHEN reason IN ('LOST_CARD_ORDER', 'NO_INITIAL_FREE_PROMOPAGE_CARD_ORDER') THEN 'Card'
@@ -12,5 +12,4 @@ SELECT
     WHEN reason IN ('WELCOME_HOME', 'METAL_GAME_START', 'METAL_RESERVE_PLAN', 'JOINING_ANNIVERSARY') THEN 'Engagement'
     WHEN reason IN ('ENGAGEMENT_SPLIT_BILL_RESTAURANT', 'MADE_MONEY_REQUEST_NOT_SPLIT_BILL') THEN 'Transactions'
   END AS reason_category
-FROM
-  `iconic-iridium-393108.ApexBank.notifications`
+FROM `iconic-iridium-393108.ApexBank.notifications`
