@@ -17,7 +17,7 @@ users_filled AS (
 )
 
 SELECT 
-    SUBSTR(u.user_id, (STRPOS(u.user_id, '_') + 1), (LENGTH(u.user_id) - STRPOS(u.user_id, '_'))) AS user_id
+    CAST(SUBSTR(u.user_id, (STRPOS(u.user_id, '_') + 1), (LENGTH(u.user_id) - STRPOS(u.user_id, '_'))) AS INT64) AS user_id
     ,u.birth_year
     ,2019 - u.birth_year AS age
     ,cc.country AS country
@@ -33,7 +33,7 @@ SELECT
     ,Extract(YEAR FROM created_date) AS year
     ,Extract(MONTH FROM created_date) AS month
     ,Extract(DAY FROM created_date) AS day 
-    ,CAST(u.user_settings_crypto_unlocked AS BOOLEAN) AS crypto_unlocked
+    ,CAST(u.user_settings_crypto_unlocked AS INT64) AS crypto_unlocked
     ,u.plan
     ,CAST(uf.attributes_notifications_marketing_push_filled AS INT64) AS notifications_push_enabled
     ,CAST(uf.attributes_notifications_marketing_email_filled AS INT64) AS notifications_email_enabled
