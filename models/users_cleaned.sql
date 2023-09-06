@@ -17,7 +17,7 @@ users_filled AS (
 )
 
 SELECT 
-    SUBSTR(u.user_id, (STRPOS(u.user_id, '_') + 1), (LENGTH(u.user_id) - STRPOS(u.user_id, '_'))) AS user_id
+    CAST(SUBSTR(u.user_id, (STRPOS(u.user_id, '_') + 1), (LENGTH(u.user_id) - STRPOS(u.user_id, '_'))) AS INT64) AS user_id
     ,u.birth_year
     ,2019 - u.birth_year AS age
     ,cc.country AS country
