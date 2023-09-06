@@ -3,7 +3,7 @@ WITH DateRange AS (
     user_id,
     MAX(date_date) AS max_date,
     MIN(date_date) AS min_date
-  FROM `iconic-iridium-393108.dbt_adelina.cleaning_transactions`
+  FROM {{ref('transactions_cleaned')}} 
   WHERE transactions_state = "COMPLETED"
   GROUP BY user_id
 ),
@@ -11,7 +11,7 @@ TransactionCount AS (
   SELECT
     user_id,
     COUNT(transaction_id) AS total_transactions
-  FROM `iconic-iridium-393108.dbt_adelina.cleaning_transactions`
+  FROM {{ref('transactions_cleaned')}} 
   WHERE transactions_state = "COMPLETED"
   GROUP BY user_id
 )
