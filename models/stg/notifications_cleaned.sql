@@ -12,5 +12,5 @@ SELECT
     WHEN reason IN ('WELCOME_HOME', 'METAL_GAME_START', 'METAL_RESERVE_PLAN', 'JOINING_ANNIVERSARY') THEN 'Engagement'
     WHEN reason IN ('ENGAGEMENT_SPLIT_BILL_RESTAURANT', 'MADE_MONEY_REQUEST_NOT_SPLIT_BILL') THEN 'Transactions'
   END AS reason_category
-FROM
-  `iconic-iridium-393108.ApexBank.notifications`
+FROM 
+`iconic-iridium-393108.ApexBank.notifications`
