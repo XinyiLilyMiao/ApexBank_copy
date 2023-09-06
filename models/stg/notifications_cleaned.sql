@@ -2,7 +2,7 @@ SELECT
   reason,
   channel,
   status,
-  user_id,
+  CAST(SUBSTR(u.user_id, (STRPOS(u.user_id, '_') + 1), (LENGTH(u.user_id) - STRPOS(u.user_id, '_'))) AS INT64) AS user_id
   created_date,
   Extract(DATE FROM created_date) AS notification_date,
   CASE

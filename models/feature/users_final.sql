@@ -23,14 +23,14 @@ activity AS(SELECT
 ),
 avg AS(SELECT
     user_id
-    ,transaction_frequency
+    ,nb_transactions_day
     FROM {{ref('Average_daily_transactions')}}
 )
 
 SELECT 
 u.*
 ,activity.avg_days_inactivity
-,avg.transaction_frequency AS nb_transactions_day
+,avg.nb_transactions_day
 FROM u
 LEFT JOIN activity on u.user_id=activity.user_id
 LEFT JOIN avg on u.user_id=avg.user_id
