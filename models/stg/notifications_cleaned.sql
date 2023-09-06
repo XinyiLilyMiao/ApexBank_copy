@@ -1,12 +1,10 @@
-CREATE OR REPLACE TABLE `iconic-iridium-393108.ApexBank.notifications_with_grouped_reasons` 
-AS
 SELECT
   reason,
   channel,
   status,
   user_id,
   created_date,
-  formatted_date,
+  Extract(DATE FROM created_date) AS notification_date,
   CASE
     WHEN reason IN ('BLACK_FRIDAY','FIFTH_PAYMENT_PROMO') THEN 'Promotions'
     WHEN reason IN ('LOST_CARD_ORDER', 'NO_INITIAL_FREE_PROMOPAGE_CARD_ORDER') THEN 'Card'
@@ -15,4 +13,4 @@ SELECT
     WHEN reason IN ('ENGAGEMENT_SPLIT_BILL_RESTAURANT', 'MADE_MONEY_REQUEST_NOT_SPLIT_BILL') THEN 'Transactions'
   END AS reason_category
 FROM
-  `iconic-iridium-393108.ApexBank.notifications_with_formatted_date`;
+  `iconic-iridium-393108.ApexBank.notifications`
