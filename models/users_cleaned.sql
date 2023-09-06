@@ -21,12 +21,18 @@ SELECT
     ,u.birth_year
     ,2019 - u.birth_year AS age
     ,cc.country AS country
-    ,u.city
-    ,u.created_date as member_at
-    ,Extract(DATE FROM u.created_date) AS date
-    ,Extract(YEAR FROM u.created_date) AS year
-    ,Extract(MONTH FROM u.created_date) AS month
-    ,Extract(DAY FROM u.created_date) AS day
+    ,CASE
+    WHEN REGEXP_CONTAINS(LOWER(city),'london') THEN 'London'
+    WHEN REGEXP_CONTAINS(LOWER(city),'warszawa OR warsaw') THEN 'Warszawa'
+    WHEN REGEXP_CONTAINS(LOWER(city),'paris') THEN 'Paris'
+    WHEN REGEXP_CONTAINS(LOWER(city),'dublin') THEN 'Dublin'
+    WHEN REGEXP_CONTAINS(LOWER(city),'vilnius') THEN 'Vilnius'
+    ELSE "other"
+    END AS top_city
+    ,Extract(DATE FROM created_date) AS member_at
+    ,Extract(YEAR FROM created_date) AS year
+    ,Extract(MONTH FROM created_date) AS month
+    ,Extract(DAY FROM created_date) AS day 
     ,CAST(u.user_settings_crypto_unlocked AS BOOLEAN) AS crypto_unlocked
     ,u.plan
     ,CAST(uf.attributes_notifications_marketing_push_filled AS INT64) AS notifications_push_enabled
