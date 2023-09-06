@@ -47,8 +47,8 @@ SELECT
     ,CAST(uf.attributes_notifications_marketing_email_filled AS INT64) AS notifications_email_enabled
     ,u.num_contacts
     ,l.last_transaction_date
-    ,DATE_DIF(DATE '2019-05-16', DATE l.last_transaction_date, DAY) AS days_since_last_transaction
-    ,IF(DATE_DIF(DATE '2019-05-16', DATE l.last_transaction_date, DAY) >= 60, 1, 0) AS churned
+    ,DATE_DIFF(DATE '2019-05-16', DATE(l.last_transaction_date), DAY) AS days_since_last_transaction
+    ,IF(DATE_DIFF(DATE '2019-05-16', DATE(l.last_transaction_date), DAY) >= 60, 1, 0) AS churned
 FROM `iconic-iridium-393108.ApexBank.users` AS u
 LEFT JOIN `iconic-iridium-393108.ApexBank.country_code` AS cc ON u.country = cc.code_2
 LEFT JOIN users_filled AS uf ON u.user_id = uf.user_id
