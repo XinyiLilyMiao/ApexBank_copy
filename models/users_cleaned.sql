@@ -47,6 +47,7 @@ SELECT
     ,CAST(uf.attributes_notifications_marketing_email_filled AS INT64) AS notifications_email_enabled
     ,u.num_contacts
     ,l.last_transaction_date
+    ,'2019-05-16'-l.last_transaction_date AS days_since_last_transaction
 FROM `iconic-iridium-393108.ApexBank.users` AS u
 LEFT JOIN `iconic-iridium-393108.ApexBank.country_code` AS cc ON u.country = cc.code_2
 LEFT JOIN users_filled AS uf ON u.user_id = uf.user_id
