@@ -20,6 +20,6 @@ SELECT
   CASE
     WHEN DATE_DIFF(d.max_date, d.min_date, DAY) = 0 THEN 1.000 ##We set 1.000 for those cases where there is no difference between the first and last transaction, meaning that 
     ELSE ROUND(t.total_transactions / DATE_DIFF(d.max_date, d.min_date, DAY), 2)
-  END AS transaction_frequency
+  END AS nb_transactions_day
 FROM TransactionCount t
 JOIN DateRange d ON t.user_id = d.user_id
