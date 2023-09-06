@@ -3,7 +3,7 @@ WITH users AS (
     ),
 
 transaction AS (
-    SELECT * FROM {{ref('transaction_cleaned')}}
+    SELECT * FROM {{ ref('transactions_cleaned') }}
     )
 
 
