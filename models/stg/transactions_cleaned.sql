@@ -1,5 +1,5 @@
 SELECT 
-    RIGHT(user_id, LENGTH(user_id) - 5) AS user_id 
+    CAST(RIGHT(user_id, LENGTH(user_id) - 5) AS INT64) AS user_id 
     ,RIGHT(transaction_id, LENGTH(transaction_id) - 12) AS transaction_id 
     ,created_date
     ,DATE(created_date) AS date_date
