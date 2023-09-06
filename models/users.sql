@@ -23,7 +23,7 @@ WITH u AS (
     order by avg_days_inactivity)
 
 SELECT 
-*
+u.*
 ,activity.avg_days_inactivity
 FROM u
 LEFT JOIN activity on u.user_id=activity.user_id
