@@ -39,8 +39,8 @@ avg AS (
 SELECT 
     u.*
     ,d.device
-    ,COALESCE(activity.avg_days_inactivity, DATE_DIFF('2019-05-16', u.member_at, DAY))
-    ,COALESCE(avg.nb_transactions_day, 0)
+    ,COALESCE(activity.avg_days_inactivity, DATE_DIFF('2019-05-16', u.member_at, DAY)) AS avg_days_inactivity
+    ,COALESCE(avg.nb_transactions_day, 0) AS nb_transactions_day
 FROM u
 LEFT JOIN activity on u.user_id=activity.user_id
 LEFT JOIN avg on u.user_id=avg.user_id
