@@ -42,6 +42,7 @@ SELECT
     ,Extract(YEAR FROM created_date) AS year
     ,Extract(MONTH FROM created_date) AS month
     ,Extract(DAY FROM created_date) AS day 
+    ,DATE_DIFF('2019-05-16', member_at, DAY) as days_joined
     ,CAST(u.user_settings_crypto_unlocked AS INT64) AS crypto_unlocked
     ,u.plan
     ,CAST(uf.attributes_notifications_marketing_push_filled AS INT64) AS notifications_push_enabled
