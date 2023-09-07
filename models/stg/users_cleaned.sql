@@ -9,8 +9,8 @@ WITH notifications_filled AS (
 users_filled AS (
     SELECT
         u.user_id
-        ,COALESCE(u.attributes_notifications_marketing_push, n.attributes_notifications_marketing_push_filled) AS attributes_notifications_marketing_push_filled
-        ,COALESCE(u.attributes_notifications_marketing_email, n.attributes_notifications_marketing_email_filled) AS attributes_notifications_marketing_email_filled
+        ,COALESCE(u.attributes_notifications_marketing_push, n.attributes_notifications_marketing_push_filled, 0) AS attributes_notifications_marketing_push_filled
+        ,COALESCE(u.attributes_notifications_marketing_email, n.attributes_notifications_marketing_email_filled, 0) AS attributes_notifications_marketing_email_filled
     FROM `iconic-iridium-393108.ApexBank.users` AS u
     LEFT JOIN notifications_filled AS n
     ON u.user_id = n.user_id
@@ -49,7 +49,7 @@ SELECT
     ,u.num_contacts
     ,l.first_transaction_date
     ,l.last_transaction_date
-    ,DATE_DIFF(DATE(created_date), l.first_transaction_date, DAY) AS days_to_first_transaction
+    ,DATE_DIFF(l.first_transaction_date, DATE(created_date), DAY) AS days_to_first_transaction
     ,DATE_DIFF(DATE '2019-05-16', l.last_transaction_date, DAY) AS days_since_last_transaction
     ,IF(DATE_DIFF(DATE '2019-05-16', l.last_transaction_date, DAY) >= 60, 1, 0) AS churned
 FROM `iconic-iridium-393108.ApexBank.users` AS u
