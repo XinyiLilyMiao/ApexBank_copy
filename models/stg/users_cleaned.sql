@@ -9,8 +9,8 @@ WITH notifications_filled AS (
 users_filled AS (
     SELECT
         u.user_id
-        ,COALESCE(u.attributes_notifications_marketing_push, n.attributes_notifications_marketing_push_filled) AS attributes_notifications_marketing_push_filled
-        ,COALESCE(u.attributes_notifications_marketing_email, n.attributes_notifications_marketing_email_filled) AS attributes_notifications_marketing_email_filled
+        ,COALESCE(u.attributes_notifications_marketing_push, n.attributes_notifications_marketing_push_filled, 0) AS attributes_notifications_marketing_push_filled
+        ,COALESCE(u.attributes_notifications_marketing_email, n.attributes_notifications_marketing_email_filled, 0) AS attributes_notifications_marketing_email_filled
     FROM `iconic-iridium-393108.ApexBank.users` AS u
     LEFT JOIN notifications_filled AS n
     ON u.user_id = n.user_id
