@@ -22,7 +22,7 @@ transaction_dates AS (
     SELECT 
         user_id
         ,MAX(DATE(created_date)) AS last_transaction_date
-        ,MAX(DATE(created_date)) AS first_transaction_date
+        ,MIN(DATE(created_date)) AS first_transaction_date
     FROM `iconic-iridium-393108.ApexBank.transactions`
     GROUP BY user_id
 )
