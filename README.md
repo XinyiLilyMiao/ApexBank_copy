@@ -8,7 +8,7 @@
 Models--feature
 
 Average_daily_transactions.sql 
-1. calculate average daily transactions from transaction table for each customer
+1. Calculate average daily transactions from transaction table for each customer
 
 users_final.sql
 1. Calculate Avg days of inactivity,days to first transaction, days since last transaction for each customer.
@@ -30,9 +30,9 @@ transactions_cleaned.sql
 2. Define whether a transaction is the last transaction of an user
 
 nortifications_cleaned.sql
-1. cast user-id into the same format as in other tables
-2. categorize nortifications into 5 groups
+1. Cast user-id into the same format as in other tables
+2. Categorize nortifications into 5 groups
 
 device_cleaned.sql 
-1. change column names
-2. cast user-id into the same format as in other tables
+1. Change column names
+2. Cast user-id into the same format as in other tables
